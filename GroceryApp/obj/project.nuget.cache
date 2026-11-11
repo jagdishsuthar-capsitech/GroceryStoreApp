@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "iyZJyYkYQmQ=",
+  "success": true,
+  "projectFilePath": "D:\\capsitech\\work\\GroceryStoreApp\\GroceryApp\\GroceryApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.14\\microsoft.aspnetcore.openapi.10.0.14.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\microsoft.extensions.apidescription.server\\10.0.0\\microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\microsoft.openapi\\2.12.2\\microsoft.openapi.2.12.2.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\mongodb.bson\\3.13.0\\mongodb.bson.3.13.0.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\mongodb.driver\\3.13.0\\mongodb.driver.3.13.0.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\sharpcompress\\0.48.1\\sharpcompress.0.48.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\snappier\\1.3.1\\snappier.1.3.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\swashbuckle.aspnetcore\\10.0.1\\swashbuckle.aspnetcore.10.0.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.0.1\\swashbuckle.aspnetcore.swagger.10.0.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.0.1\\swashbuckle.aspnetcore.swaggergen.10.0.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.0.1\\swashbuckle.aspnetcore.swaggerui.10.0.1.nupkg.sha512",
+    "C:\\Users\\CT_USER.CIT-IT-PC-0249\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+  ],
+  "logs": []
+}
