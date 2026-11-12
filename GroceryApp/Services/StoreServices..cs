@@ -9,24 +9,30 @@ public class StoreService
 {
     private readonly IMongoCollection<Store> _stores;
 
-    public StoreService(IConfiguration config)
+    public StoreService(IMongoCollection<Store> stores)
     {
-        var connectionString = config["MongoDB:ConnectionString"];
-        var databaseName = config["MongoDB:DatabaseName"];
-        if (string.IsNullOrWhiteSpace(connectionString)) throw new InvalidOperationException("MongoDB connection string is missing.");
-        if (string.IsNullOrWhiteSpace(databaseName)) throw new InvalidOperationException("MongoDB database name is missing.");
-
-        var client = new MongoClient(connectionString);
-        var database = client.GetDatabase(databaseName);
-
-        // Keeping your original collection name "Store"
-        _stores = database.GetCollection<Store>("Store");
+        _stores = stores;
     }
 
-    // GET ALL STORES
-    public async Task<List<Store>> GetAllAsync()
+    // GET ALL STORES WITH PAGINATION
+    public async Task<PagedApiResponse<Store>> GetPagedAsync(int pageNumber, int pageSize)
     {
-        return await _stores.Find(_ => true).ToListAsync();
+        var filter = Builders<Store>.Filter.Empty;
+        var totalRecords = await _stores.CountDocumentsAsync(filter);
+        var stores = await _stores
+            .Find(filter)
+            .SortBy(s => s.Id)
+            .Skip((pageNumber - 1) * pageSize)
+            .Limit(pageSize)
+            .ToListAsync();
+
+        return new PagedApiResponse<Store>
+        {
+            Items = stores,
+            TotalRecords = (int)totalRecords,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
     }
 
     // GET STORE BY ID
@@ -66,8 +72,6 @@ public class StoreService
 
         var inventory = storeDto.Inventory.Select(p =>
         {
-            // Preserve ID if this product already belongs
-            // to the existing store.
             var existingProduct = existingStore.Inventory.FirstOrDefault(x => x.Id == p.Id);
 
             return new Product

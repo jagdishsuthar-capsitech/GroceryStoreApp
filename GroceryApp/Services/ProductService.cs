@@ -9,22 +9,30 @@ public class ProductService
 {
     private readonly IMongoCollection<Product> _products;
 
-    public ProductService(IConfiguration config)
+    public ProductService(IMongoCollection<Product> products)
     {
-        var connectionString = config["MongoDB:ConnectionString"];
-        var databaseName = config["MongoDB:DatabaseName"];
-        if (string.IsNullOrWhiteSpace(connectionString)) throw new InvalidOperationException("MongoDB connection string is missing.");
-        if (string.IsNullOrWhiteSpace(databaseName)) throw new InvalidOperationException("MongoDB database name is missing.");
-
-        var client = new MongoClient(connectionString);
-        var database = client.GetDatabase(databaseName);
-        _products = database.GetCollection<Product>("Products");
+        _products = products;
     }
 
-    // GET ALL PRODUCTS
-    public async Task<List<Product>> GetAllAsync()
+    // GET ALL PRODUCTS WITH PAGINATION
+    public async Task<PagedApiResponse<Product>> GetPagedAsync(int pageNumber, int pageSize)
     {
-        return await _products.Find(_ => true).ToListAsync();
+        var filter = Builders<Product>.Filter.Empty;
+        var totalRecords = await _products.CountDocumentsAsync(filter);
+        var products = await _products
+            .Find(filter)
+            .SortBy(p => p.Id)
+            .Skip((pageNumber - 1) * pageSize)
+            .Limit(pageSize)
+            .ToListAsync();
+
+        return new PagedApiResponse<Product>
+        {
+            Items = products,
+            TotalRecords = (int)totalRecords,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
     }
 
     // GET PRODUCT BY ID
@@ -50,9 +58,7 @@ public class ProductService
     }
 
     // UPDATE PRODUCT
-    public async Task<bool> UpdateAsync(
-        string id,
-        ProductDto productDto)
+    public async Task<bool> UpdateAsync(string id, ProductDto productDto)
     {
         var update = Builders<Product>.Update
             .Set(p => p.Name, productDto.Name.Trim())

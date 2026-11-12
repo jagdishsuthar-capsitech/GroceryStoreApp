@@ -12,5 +12,7 @@ public class StoreDto
     [StringLength(200, MinimumLength = 2)]
     public string Location { get; set; } = string.Empty;
 
+    [Required]
+    [MinLength(1, ErrorMessage = "At least one product is required.")]
     public List<ProductDto> Inventory { get; set; } = new();
 }

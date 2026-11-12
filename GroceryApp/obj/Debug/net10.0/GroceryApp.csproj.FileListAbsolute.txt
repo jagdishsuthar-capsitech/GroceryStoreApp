@@ -40,3 +40,4 @@ D:\capsitech\work\GroceryStoreApp\GroceryApp\obj\Debug\net10.0\refint\GroceryApp
 D:\capsitech\work\GroceryStoreApp\GroceryApp\obj\Debug\net10.0\GroceryApp.pdb
 D:\capsitech\work\GroceryStoreApp\GroceryApp\obj\Debug\net10.0\GroceryApp.genruntimeconfig.cache
 D:\capsitech\work\GroceryStoreApp\GroceryApp\obj\Debug\net10.0\ref\GroceryApp.dll
+D:\capsitech\work\GroceryStoreApp\GroceryApp\obj\Debug\net10.0\GroceryApp.sourcelink.json
